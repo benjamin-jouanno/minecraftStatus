@@ -1,7 +1,8 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-interface StatusResponse { online: boolean; ip?: string; port?: number; version?: string; icon?: string; players?: { online?: number; max?: number; list?: string[] }; }
+interface Player { name: string; uuid?: string; }
+interface StatusResponse { online: boolean; ip?: string; port?: number; version?: string; icon?: string; players?: { online?: number; max?: number; list?: Player[] }; }
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ interface StatusResponse { online: boolean; ip?: string; port?: number; version?
 export class AppComponent implements OnInit, OnDestroy {
   readonly statusApi = 'https://api.mcsrvstat.us/3/169.155.122.96:9130';
   readonly skins = ['linear-gradient(#4b271b 0 22%,#a9653e 22% 47%,#f0ad77 47% 83%,#82503c 83%)', 'linear-gradient(#ef8b36 0 22%,#f5ba8f 22% 52%,#f4d29f 52% 80%,#6cbc69 80%)', 'linear-gradient(#573823 0 23%,#926040 23% 52%,#c58e63 52% 80%,#5a3a29 80%)', 'linear-gradient(#f2d271 0 24%,#f5cf91 24% 54%,#fae2b4 54% 81%,#69b4a5 81%)'];
-  online = true; host = '169.155.122.96'; port = 9130; version = 'Connecting…'; players: string[] = []; playerCount = 0; playerMax = 0; ping = '—'; icon?: string;
+  online = true; host = '169.155.122.96'; port = 9130; version = 'Connecting…'; players: Player[] = []; playerCount = 0; playerMax = 0; ping = '—'; icon?: string;
   private refreshTimer?: ReturnType<typeof setInterval>;
   constructor(private readonly changeDetector: ChangeDetectorRef) {}
 
