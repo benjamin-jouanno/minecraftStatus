@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface StatusResponse { online: boolean; ip?: string; port?: number; version?: string; icon?: string; players?: { online?: number; max?: number; list?: string[] }; }
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, OnDestroy {
